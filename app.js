@@ -12,7 +12,7 @@ app.use(express.json());
 
 // routes
 app.get('/', (req, res) => {
-  res.send('jobs api');
+  res.send('Sectors api');
 });
 
 app.use(notFoundMiddleware);
