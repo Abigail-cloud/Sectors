@@ -1,4 +1,7 @@
-
+const Sector = require('../models/Sector');
+const { StatusCodes } = require('http-status-codes');
+const { NotFoundError,
+    BadRequestError, } = require('../errors');
 
 
 const getAllSectors = async(req, res)=>{
@@ -12,7 +15,9 @@ const getSector = async(req, res)=>{
 
 //
 const createSector= async(req, res)=>{
-    res.json(req.user)
+req.body.createdBy= req.user.userId
+    const sector = await Sector.create(req.body)
+    res.status(StatusCodes.CREATED).json(sector)
 }
 
 
