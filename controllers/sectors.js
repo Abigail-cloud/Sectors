@@ -21,7 +21,6 @@ const getSector = async(req, res)=>{
 
     res.status(StatusCodes.OK).json({sector})
 }
-
 //
 const createSector= async(req, res)=>{
     req.body.createdBy = req.user.userId
