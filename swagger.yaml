@@ -1,0 +1,237 @@
+openapi: 3.0.0
+info:
+  title: SECTORS-API-V1
+  description: >-
+    The Sectors API is an application that allows users to know  the rate at which a sector employs people and utilizes technical know-how. The rate at which a sector's employment rate grows is taken into consideration, as well as the use of technology.
+
+
+    A graph to determine the rates will be included to see how they grow in real-time.
+
+    The API uses the RESTful Application programming interface. This is the base setup.
+
+
+    A user is liable to include it percieved opinion about a sector.
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://sectors-api.herokuapp.com/v1
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Sector-register-user
+      operationId: Sector-register-user
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Sector-user-register-Request'
+              - example:
+                  name: Melinda
+            example:
+              name: Melinda
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Sector-user-login
+      operationId: Sector-user-login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Sector-user-login-Request'
+              - example:
+                  email: Lin34@gmail.com
+                  password: lin456
+            example:
+              email: Lin34@gmail.com
+              password: lin456
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /sectors:
+    post:
+      tags:
+      - Sectors
+      summary: Create_Sectors
+      operationId: Create_Sectors
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Create_Sectors_Request'
+              - example:
+                  company: Mayfair clinic
+                  industry: Doctor
+            example:
+              company: Mayfair clinic
+              industry: Doctor
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Sectors
+      summary: GetAllSectors
+      operationId: GetAllSectors
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /sectors/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The sector ID
+    get:
+      tags:
+      - Sectors
+      summary: GetASector
+      operationId: GetASector
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Sectors
+      summary: updateSector
+      operationId: updateSector
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/updateSectorRequest'
+              - example:
+                  company: dogo vet. clinic
+                  industry: laboratory consultant
+            example:
+              company: dogo vet. clinic
+              industry: laboratory consultant
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Sectors
+      summary: DeleteSector
+      operationId: DeleteSector
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    Sector-user-register-Request:
+      title: Sector-user-register-Request
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Melinda
+    Sector-user-login-Request:
+      title: Sector-user-login-Request
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: Lin34@gmail.com
+        password: lin456
+    Create_Sectors_Request:
+      title: Create_Sectors_Request
+      required:
+      - company
+      - industry
+      type: object
+      properties:
+        company:
+          type: string
+        industry:
+          type: string
+      example:
+        company: Mayfair clinic
+        industry: Doctor
+    updateSectorRequest:
+      title: updateSectorRequest
+      required:
+      - company
+      - industry
+      type: object
+      properties:
+        company:
+          type: string
+        industry:
+          type: string
+      example:
+        company: dogo vet. clinic
+        industry: laboratory consultant
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Auth
+  description: ''
+- name: Sectors
+  description: ''
