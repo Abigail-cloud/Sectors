@@ -2,6 +2,8 @@
 
 ####
 Documentation: https://sectors-api.herokuapp.com/api-docs/
+####
+Documentation: https://sectors-production.up.railway.app/api-docs/
 
 
 ####
